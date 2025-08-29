@@ -17,15 +17,14 @@ def load_data_from_csv():
     """Load business data from CSV file"""
     # Check if running on Vercel (production) or local development
     if os.environ.get('VERCEL_ENV'):
-        # For Vercel deployment, use a different path or handle data differently
-        # For now, we'll create some sample data
-        create_sample_data()
+        # For Vercel deployment, use the CSV file in the repository
+        csv_file = "LLC Data.csv"
     else:
         # Local development - load from CSV
         csv_file = r"C:\Users\webd5\Downloads\LLC Data.csv"
-        
-        try:
-            with open(csv_file, 'r', encoding='utf-8') as file:
+    
+    try:
+        with open(csv_file, 'r', encoding='utf-8') as file:
                 reader = csv.DictReader(file)
                 
                 for row in reader:
@@ -55,12 +54,17 @@ def load_data_from_csv():
             print(f"States: {len(states_data)}")
             print(f"Cities: {len(cities_data)}")
             
-        except FileNotFoundError:
-            print(f"Error: CSV file not found at {csv_file}")
-            create_sample_data()
-        except Exception as e:
-            print(f"Error processing CSV: {e}")
-            create_sample_data()
+    except FileNotFoundError:
+        print(f"Error: CSV file not found at {csv_file}")
+        create_sample_data()
+    except Exception as e:
+        print(f"Error processing CSV: {e}")
+        create_sample_data()
+    
+    # If no data was loaded, create sample data
+    if not businesses_data:
+        print("No business data loaded, creating sample data")
+        create_sample_data()
 
 def create_sample_data():
     """Create sample data for Vercel deployment"""
