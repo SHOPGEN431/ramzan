@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}LLC Directory - Find LLC Formation Services Near You{% endblock %}</title>
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="4vhrO69psFp68NX5Ma26lpCQJFbgXGm0OmrvZNw0YP4" />
     <meta name="description" content="{% block description %}Discover the most comprehensive directory of LLC formation services across the United States. Find local providers, compare services, and get expert help for your business formation needs.{% endblock %}">
     <meta name="keywords" content="{% block keywords %}LLC directory, LLC formation services, business formation, LLC formation near me, local LLC services{% endblock %}">
     
@@ -73,6 +76,7 @@
                         </div>
                     </li>
                     <li><a href="{{ url_for('locations') }}">All Locations</a></li>
+                    <li><a href="{{ url_for('cost_calculator') }}">Cost Calculator</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                     <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
@@ -108,16 +112,16 @@
                     </ul>
                 </div>
                 
-                <div class="footer-section">
-                    <h4>Business Tools</h4>
-                    <ul>
-                        <li><a href="#">LLC Cost Calculator</a></li>
-                        <li><a href="#">Business Structure Quiz</a></li>
-                        <li><a href="#">Foreign Qualification</a></li>
-                        <li><a href="#">Break-Even Calculator</a></li>
-                        <li><a href="#">ROI Calculator</a></li>
-                    </ul>
-                </div>
+                                 <div class="footer-section">
+                     <h4>Business Tools</h4>
+                     <ul>
+                         <li><a href="{{ url_for('cost_calculator') }}">LLC Cost Calculator</a></li>
+                         <li><a href="#">Business Structure Quiz</a></li>
+                         <li><a href="#">Foreign Qualification</a></li>
+                         <li><a href="#">Break-Even Calculator</a></li>
+                         <li><a href="#">ROI Calculator</a></li>
+                     </ul>
+                 </div>
                 
                 <div class="footer-section">
                     <h4>Locations</h4>

@@ -55,8 +55,8 @@ logs/
 .env.test.local
 .env.production.local
 
-# CSV data files (if you want to exclude them)
-*.csv
+# CSV data files (keeping them for production)
+# *.csv
 
 # Temporary files
 *.tmp

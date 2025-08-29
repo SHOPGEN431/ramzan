@@ -248,6 +248,11 @@ def privacy():
     """Privacy Policy page"""
     return render_template('privacy.html')
 
+@app.route('/cost-calculator')
+def cost_calculator():
+    """LLC Cost Calculator page"""
+    return render_template('cost_calculator.html')
+
 @app.route('/locations')
 def locations():
     """All locations page - simple listing of states and cities"""
@@ -290,13 +295,14 @@ def sitemap():
     base_url = request.host_url.rstrip('/')
     
     # Add static pages
-    static_pages = [
-        {'loc': f"{base_url}/", 'priority': '1.0', 'changefreq': 'daily'},
-        {'loc': f"{base_url}/about", 'priority': '0.8', 'changefreq': 'monthly'},
-        {'loc': f"{base_url}/contact", 'priority': '0.8', 'changefreq': 'monthly'},
-        {'loc': f"{base_url}/privacy", 'priority': '0.6', 'changefreq': 'monthly'},
-        {'loc': f"{base_url}/locations", 'priority': '0.9', 'changefreq': 'weekly'},
-    ]
+               static_pages = [
+               {'loc': f"{base_url}/", 'priority': '1.0', 'changefreq': 'daily'},
+               {'loc': f"{base_url}/about", 'priority': '0.8', 'changefreq': 'monthly'},
+               {'loc': f"{base_url}/contact", 'priority': '0.8', 'changefreq': 'monthly'},
+               {'loc': f"{base_url}/privacy", 'priority': '0.6', 'changefreq': 'monthly'},
+               {'loc': f"{base_url}/locations", 'priority': '0.9', 'changefreq': 'weekly'},
+               {'loc': f"{base_url}/cost-calculator", 'priority': '0.9', 'changefreq': 'monthly'},
+           ]
     
     for page in static_pages:
         url = ET.SubElement(urlset, 'url')

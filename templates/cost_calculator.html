@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% block title %}LLC Formation Cost Calculator - State-by-State Pricing{% endblock %}
+
+{% block description %}Calculate LLC formation costs for all 50 states. Compare filing fees, annual fees, and total costs to make informed decisions about where to form your LLC.{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <h1>LLC Formation Cost Calculator</h1>
+        <p class="hero-subtitle">Compare LLC formation costs across all 50 states and find the most cost-effective option for your business</p>
+    </div>
+</div>
+
+<div class="calculator-section">
+    <div class="container">
+        <div class="calculator-grid">
+            <!-- Cost Calculator Form -->
+            <div class="calculator-form">
+                <h2>Calculate Your LLC Costs</h2>
+                <form id="costCalculator">
+                    <div class="form-group">
+                        <label for="stateSelect">Select State:</label>
+                        <select id="stateSelect" required>
+                            <option value="">Choose a state...</option>
+                            <option value="alabama">Alabama</option>
+                            <option value="alaska">Alaska</option>
+                            <option value="arizona">Arizona</option>
+                            <option value="arkansas">Arkansas</option>
+                            <option value="california">California</option>
+                            <option value="colorado">Colorado</option>
+                            <option value="connecticut">Connecticut</option>
+                            <option value="delaware">Delaware</option>
+                            <option value="florida">Florida</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="hawaii">Hawaii</option>
+                            <option value="idaho">Idaho</option>
+                            <option value="illinois">Illinois</option>
+                            <option value="indiana">Indiana</option>
+                            <option value="iowa">Iowa</option>
+                            <option value="kansas">Kansas</option>
+                            <option value="kentucky">Kentucky</option>
+                            <option value="louisiana">Louisiana</option>
+                            <option value="maine">Maine</option>
+                            <option value="maryland">Maryland</option>
+                            <option value="massachusetts">Massachusetts</option>
+                            <option value="michigan">Michigan</option>
+                            <option value="minnesota">Minnesota</option>
+                            <option value="mississippi">Mississippi</option>
+                            <option value="missouri">Missouri</option>
+                            <option value="montana">Montana</option>
+                            <option value="nebraska">Nebraska</option>
+                            <option value="nevada">Nevada</option>
+                            <option value="new-hampshire">New Hampshire</option>
+                            <option value="new-jersey">New Jersey</option>
+                            <option value="new-mexico">New Mexico</option>
+                            <option value="new-york">New York</option>
+                            <option value="north-carolina">North Carolina</option>
+                            <option value="north-dakota">North Dakota</option>
+                            <option value="ohio">Ohio</option>
+                            <option value="oklahoma">Oklahoma</option>
+                            <option value="oregon">Oregon</option>
+                            <option value="pennsylvania">Pennsylvania</option>
+                            <option value="rhode-island">Rhode Island</option>
+                            <option value="south-carolina">South Carolina</option>
+                            <option value="south-dakota">South Dakota</option>
+                            <option value="tennessee">Tennessee</option>
+                            <option value="texas">Texas</option>
+                            <option value="utah">Utah</option>
+                            <option value="vermont">Vermont</option>
+                            <option value="virginia">Virginia</option>
+                            <option value="washington">Washington</option>
+                            <option value="west-virginia">West Virginia</option>
+                            <option value="wisconsin">Wisconsin</option>
+                            <option value="wyoming">Wyoming</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceType">Service Type:</label>
+                        <select id="serviceType" required>
+                            <option value="basic">Basic Filing Only</option>
+                            <option value="standard">Standard Package</option>
+                            <option value="premium">Premium Package</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Calculate Costs</button>
+                </form>
+            </div>
+            
+            <!-- Results Display -->
+            <div class="calculator-results" id="calculatorResults">
+                <h2>Your LLC Cost Breakdown</h2>
+                <div class="results-placeholder">
+                    <p>Select a state and service type to see your cost breakdown</p>
+                </div>
+                <div class="results-content" id="resultsContent" style="display: none;">
+                    <div class="cost-breakdown">
+                        <div class="cost-item">
+                            <span class="cost-label">State Filing Fee:</span>
+                            <span class="cost-amount" id="filingFee">$0</span>
+                        </div>
+                        <div class="cost-item">
+                            <span class="cost-label">Annual Report Fee:</span>
+                            <span class="cost-amount" id="annualFee">$0</span>
+                        </div>
+                        <div class="cost-item">
+                            <span class="cost-label">Service Fee:</span>
+                            <span class="cost-amount" id="serviceFee">$0</span>
+                        </div>
+                        <div class="cost-item total">
+                            <span class="cost-label">Total First Year:</span>
+                            <span class="cost-amount" id="totalCost">$0</span>
+                        </div>
+                    </div>
+                    <div class="cost-notes">
+                        <h4>Important Notes:</h4>
+                        <ul id="costNotes">
+                            <!-- Notes will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="states-comparison">
+    <div class="container">
+        <h2>State-by-State Cost Comparison</h2>
+        <p>Compare LLC formation costs across all states to find the best option for your business</p>
+        
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Filing Fee</th>
+                        <th>Annual Report</th>
+                        <th>Total First Year</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonTable">
+                    <!-- Table will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="cost-tips">
+    <div class="container">
+        <h2>LLC Formation Cost Tips</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h3>💰 Consider All Costs</h3>
+                <p>Don't just look at filing fees. Consider annual reports, franchise taxes, and ongoing compliance costs.</p>
+            </div>
+            <div class="tip-card">
+                <h3>🏢 Business Location Matters</h3>
+                <p>Forming in your home state is usually simplest, but some states offer better tax benefits.</p>
+            </div>
+            <div class="tip-card">
+                <h3>📋 Compliance Requirements</h3>
+                <p>Some states have strict compliance requirements that can add to your ongoing costs.</p>
+            </div>
+            <div class="tip-card">
+                <h3>⚡ Speed vs. Cost</h3>
+                <p>Expedited filing costs extra but can save time if you need your LLC quickly.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// State cost data
+const stateCosts = {
+    'alabama': { filing: 200, annual: 50, notes: 'No franchise tax for LLCs' },
+    'alaska': { filing: 250, annual: 100, notes: 'Biennial reports required' },
+    'arizona': { filing: 50, annual: 0, notes: 'No annual report required' },
+    'arkansas': { filing: 45, annual: 150, notes: 'Franchise tax based on net worth' },
+    'california': { filing: 70, annual: 800, notes: 'High annual franchise tax' },
+    'colorado': { filing: 50, annual: 10, notes: 'Low annual report fee' },
+    'connecticut': { filing: 120, annual: 20, notes: 'Annual report due by March 31' },
+    'delaware': { filing: 90, annual: 300, notes: 'Popular for corporations' },
+    'florida': { filing: 125, annual: 138.75, notes: 'Annual report due by May 1' },
+    'georgia': { filing: 100, annual: 50, notes: 'Annual registration required' },
+    'hawaii': { filing: 50, annual: 12.5, notes: 'Low annual report fee' },
+    'idaho': { filing: 100, annual: 0, notes: 'No annual report required' },
+    'illinois': { filing: 150, annual: 75, notes: 'Annual report due by first day of anniversary month' },
+    'indiana': { filing: 90, annual: 30, notes: 'Biennial reports required' },
+    'iowa': { filing: 50, annual: 30, notes: 'Biennial reports required' },
+    'kansas': { filing: 160, annual: 55, notes: 'Annual report due by 15th day of 4th month' },
+    'kentucky': { filing: 40, annual: 15, notes: 'Low annual report fee' },
+    'louisiana': { filing: 100, annual: 30, notes: 'Annual report due by anniversary date' },
+    'maine': { filing: 175, annual: 85, notes: 'Annual report due by June 1' },
+    'maryland': { filing: 100, annual: 300, notes: 'High annual report fee' },
+    'massachusetts': { filing: 500, annual: 500, notes: 'High filing and annual fees' },
+    'michigan': { filing: 50, annual: 25, notes: 'Low annual report fee' },
+    'minnesota': { filing: 155, annual: 25, notes: 'Annual report due by December 31' },
+    'mississippi': { filing: 50, annual: 25, notes: 'Annual report due by April 15' },
+    'missouri': { filing: 50, annual: 0, notes: 'No annual report required' },
+    'montana': { filing: 70, annual: 20, notes: 'Annual report due by April 15' },
+    'nebraska': { filing: 100, annual: 10, notes: 'Low annual report fee' },
+    'nevada': { filing: 75, annual: 150, notes: 'Annual list due by last day of anniversary month' },
+    'new-hampshire': { filing: 100, annual: 100, notes: 'Annual report due by April 1' },
+    'new-jersey': { filing: 125, annual: 75, notes: 'Annual report due by last day of anniversary month' },
+    'new-mexico': { filing: 50, annual: 0, notes: 'No annual report required' },
+    'new-york': { filing: 200, annual: 9, notes: 'Low annual report fee' },
+    'north-carolina': { filing: 125, annual: 200, notes: 'Annual report due by April 15' },
+    'north-dakota': { filing: 135, annual: 50, notes: 'Annual report due by November 15' },
+    'ohio': { filing: 99, annual: 0, notes: 'No annual report required' },
+    'oklahoma': { filing: 100, annual: 25, notes: 'Annual certificate required' },
+    'oregon': { filing: 100, annual: 100, notes: 'Annual report due by anniversary date' },
+    'pennsylvania': { filing: 125, annual: 70, notes: 'Annual report due by April 15' },
+    'rhode-island': { filing: 150, annual: 50, notes: 'Annual report due by March 1' },
+    'south-carolina': { filing: 110, annual: 0, notes: 'No annual report required' },
+    'south-dakota': { filing: 150, annual: 50, notes: 'Annual report due by first day of anniversary month' },
+    'tennessee': { filing: 300, annual: 300, notes: 'High filing and annual fees' },
+    'texas': { filing: 300, annual: 0, notes: 'No annual report required' },
+    'utah': { filing: 70, annual: 15, notes: 'Annual report due by anniversary date' },
+    'vermont': { filing: 125, annual: 35, notes: 'Annual report due by March 15' },
+    'virginia': { filing: 100, annual: 50, notes: 'Annual report due by last day of anniversary month' },
+    'washington': { filing: 200, annual: 60, notes: 'Annual report due by last day of anniversary month' },
+    'west-virginia': { filing: 100, annual: 25, notes: 'Annual report due by July 1' },
+    'wisconsin': { filing: 130, annual: 25, notes: 'Annual report due by March 31' },
+    'wyoming': { filing: 100, annual: 50, notes: 'Annual report due by first day of anniversary month' }
+};
+
+// Service type fees
+const serviceFees = {
+    'basic': 0,
+    'standard': 99,
+    'premium': 199
+};
+
+// Initialize calculator
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('costCalculator');
+    const resultsContent = document.getElementById('resultsContent');
+    const resultsPlaceholder = document.querySelector('.results-placeholder');
+    
+    // Populate comparison table
+    populateComparisonTable();
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        calculateCosts();
+    });
+    
+    function calculateCosts() {
+        const state = document.getElementById('stateSelect').value;
+        const serviceType = document.getElementById('serviceType').value;
+        
+        if (!state || !serviceType) {
+            alert('Please select both a state and service type.');
+            return;
+        }
+        
+        const stateData = stateCosts[state];
+        const serviceFee = serviceFees[serviceType];
+        
+        const filingFee = stateData.filing;
+        const annualFee = stateData.annual;
+        const totalCost = filingFee + annualFee + serviceFee;
+        
+        // Update results
+        document.getElementById('filingFee').textContent = `$${filingFee}`;
+        document.getElementById('annualFee').textContent = `$${annualFee}`;
+        document.getElementById('serviceFee').textContent = `$${serviceFee}`;
+        document.getElementById('totalCost').textContent = `$${totalCost}`;
+        
+        // Update notes
+        const notesList = document.getElementById('costNotes');
+        notesList.innerHTML = `
+            <li>${stateData.notes}</li>
+            <li>Filing fees are one-time costs</li>
+            <li>Annual fees are recurring yearly costs</li>
+            <li>Service fees vary by provider and package</li>
+        `;
+        
+        // Show results
+        resultsPlaceholder.style.display = 'none';
+        resultsContent.style.display = 'block';
+    }
+    
+    function populateComparisonTable() {
+        const tableBody = document.getElementById('comparisonTable');
+        const states = Object.keys(stateCosts).sort();
+        
+        states.forEach(state => {
+            const stateData = stateCosts[state];
+            const stateName = state.charAt(0).toUpperCase() + state.slice(1).replace('-', ' ');
+            const totalFirstYear = stateData.filing + stateData.annual;
+            
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${stateName}</strong></td>
+                <td>$${stateData.filing}</td>
+                <td>$${stateData.annual}</td>
+                <td><strong>$${totalFirstYear}</strong></td>
+                <td>${stateData.notes}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+});
+</script>
+{% endblock %}
