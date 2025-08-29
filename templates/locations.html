@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}All Locations - LLC Directory | Complete List of States and Cities{% endblock %}
+
+{% block description %}Complete directory of all states and cities with LLC businesses. Browse our comprehensive list of locations across the United States.{% endblock %}
+
+{% block keywords %}all locations, all states, all cities, complete directory, business locations{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <div class="container">
+        <a href="{{ url_for('index') }}">Home</a> / <span>All Locations</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <div class="container">
+        <h1>All Locations</h1>
+        <p>Complete directory of all states and cities with LLC businesses</p>
+    </div>
+</div>
+
+<main class="main">
+    <div class="container">
+        <div class="locations-content">
+            <!-- States Section -->
+            <section class="locations-section">
+                <div class="section-header">
+                    <h2>All States ({{ states|length }})</h2>
+                    <div class="section-actions">
+                        <select id="stateFilter" onchange="filterStates()">
+                            <option value="">Filter by Business Count</option>
+                            <option value="100+">100+ Businesses</option>
+                            <option value="50+">50+ Businesses</option>
+                            <option value="25+">25+ Businesses</option>
+                            <option value="10+">10+ Businesses</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="locations-grid" id="statesGrid">
+                    {% for state in states %}
+                    <a href="{{ url_for('state_page', state_slug=state.slug) }}" class="location-card" data-business-count="{{ state.business_count }}">
+                        <h3>{{ state.name }}</h3>
+                        <div class="location-stats">
+                            <span>{{ state.business_count }} Businesses</span>
+                            <span>{{ state.city_count }} Cities</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Cities Section -->
+            <section class="locations-section">
+                <div class="section-header">
+                    <h2>All Cities ({{ cities|length }})</h2>
+                    <div class="section-actions">
+                        <select id="cityFilter" onchange="filterCities()">
+                            <option value="">Filter by Business Count</option>
+                            <option value="50+">50+ Businesses</option>
+                            <option value="25+">25+ Businesses</option>
+                            <option value="10+">10+ Businesses</option>
+                            <option value="5+">5+ Businesses</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="locations-grid" id="citiesGrid">
+                    {% for city in cities %}
+                    <a href="{{ url_for('city_page', city_slug=city.slug) }}" class="location-card" data-business-count="{{ city.business_count }}">
+                        <h3>{{ city.name }}, {{ city.state }}</h3>
+                        <div class="location-stats">
+                            <span>{{ city.business_count }} Businesses</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function filterStates() {
+    const filter = document.getElementById('stateFilter').value;
+    const cards = document.querySelectorAll('#statesGrid .location-card');
+    
+    cards.forEach(card => {
+        const businessCount = parseInt(card.getAttribute('data-business-count'));
+        let show = true;
+        
+        if (filter) {
+            const minCount = parseInt(filter);
+            show = businessCount >= minCount;
+        }
+        
+        card.style.display = show ? 'block' : 'none';
+    });
+}
+
+function filterCities() {
+    const filter = document.getElementById('cityFilter').value;
+    const cards = document.querySelectorAll('#citiesGrid .location-card');
+    
+    cards.forEach(card => {
+        const businessCount = parseInt(card.getAttribute('data-business-count'));
+        let show = true;
+        
+        if (filter) {
+            const minCount = parseInt(filter);
+            show = businessCount >= minCount;
+        }
+        
+        card.style.display = show ? 'block' : 'none';
+    });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Find {{ businesses|length }}+ LLC Services in {{ city_name }}, {{ state_name }}{% endblock %}
+
+{% block og_title %}Find {{ businesses|length }}+ LLC Services in {{ city_name }}, {{ state_name }}{% endblock %}
+
+{% block description %}Find {{ businesses|length }}+ LLC services in {{ city_name }}, {{ state_name }}. Browse local LLC formation companies, contact information, and business details in {{ city_name }}.{% endblock %}
+
+{% block keywords %}{{ city_name }} LLC directory, {{ city_name }} businesses, {{ state_name }} companies, local businesses {{ city_name }}{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <div class="container">
+        <a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('states') }}">States</a> / <a href="{{ url_for('state_page', state_slug=state_name|lower|replace(' ', '-')) }}">{{ state_name }}</a> / <span>{{ city_name }}</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <div class="container">
+        <h1>{{ city_name }}, {{ state_name }} LLC Directory</h1>
+        <p>Find {{ businesses|length }}+ LLC services in {{ city_name }}, {{ state_name }}</p>
+    </div>
+</div>
+
+<main class="main">
+    <div class="container">
+        <!-- Top LLC Services Section -->
+        <div class="llc-services-section">
+            <h2>{{ businesses|length }} LLC Services in {{ city_name }}, {{ state_name }}</h2>
+            <p>Start your LLC in {{ city_name }}, {{ state_name }} with these trusted online services:</p>
+            
+            <div class="llc-services-grid">
+                <div class="llc-service-card featured">
+                    <div class="service-rank">1⃣</div>
+                    <div class="featured-badge">Most Popular</div>
+                    <h3>Northwest Registered Agent</h3>
+                    <div class="service-price">$39 + state filing fees</div>
+                    <div class="service-features">
+                        <span>✅ First year Registered Agent service included</span>
+                        <span>✅ Consumer Advice</span>
+                        <span>✅ LLC University®</span>
+                        <span>✅ {{ city_name }}, {{ state_name }} specific guidance</span>
+                    </div>
+                    <a href="https://consumer-champion.org/LLCwebsite" target="_blank" class="service-btn featured-btn">Get Started Now</a>
+                </div>
+                
+                <div class="llc-service-card">
+                    <div class="service-rank">2⃣</div>
+                    <h3>ZenBusiness</h3>
+                    <div class="service-price">$0 (Basic plan) + state fees</div>
+                    <div class="service-features">
+                        <span>✅ Free basic plan</span>
+                        <span>✅ Comprehensive business tools</span>
+                        <span>✅ Ongoing support</span>
+                    </div>
+                    <a href="https://zenbusiness.com" target="_blank" class="service-btn">Visit Website</a>
+                </div>
+                
+                <div class="llc-service-card">
+                    <div class="service-rank">3⃣</div>
+                    <h3>LegalZoom</h3>
+                    <div class="service-price">$0 + state fees</div>
+                    <div class="service-features">
+                        <span>✅ Industry leader</span>
+                        <span>✅ Legal expertise</span>
+                        <span>✅ Multiple plan options</span>
+                    </div>
+                    <a href="https://legalzoom.com" target="_blank" class="service-btn">Visit Website</a>
+                </div>
+                
+                <div class="llc-service-card">
+                    <div class="service-rank">4⃣</div>
+                    <h3>Incfile (formerly Bizee)</h3>
+                    <div class="service-price">$0 + state fees</div>
+                    <div class="service-features">
+                        <span>✅ Free formation</span>
+                        <span>✅ Registered agent service</span>
+                        <span>✅ Business compliance tools</span>
+                    </div>
+                    <a href="https://incfile.com" target="_blank" class="service-btn">Visit Website</a>
+                </div>
+                
+                <div class="llc-service-card">
+                    <div class="service-rank">5⃣</div>
+                    <h3>Tailor Brands</h3>
+                    <div class="service-price">$0 (Basic plan) + state fees</div>
+                    <div class="service-features">
+                        <span>✅ Branding included</span>
+                        <span>✅ Design tools</span>
+                        <span>✅ Marketing solutions</span>
+                    </div>
+                    <a href="https://tailorbrands.com" target="_blank" class="service-btn">Visit Website</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="business-list">
+            <div class="business-list-header">
+                <h2>Local Businesses in {{ city_name }}, {{ state_name }}</h2>
+                <p class="business-count">Showing all {{ businesses|length }} businesses</p>
+            </div>
+            
+            <div class="business-grid" id="businessGrid">
+                {% for business in businesses %}
+                <div class="business-card">
+                    <h3>{{ business.name }}</h3>
+                    <div class="business-info">
+                        <div>
+                            <i>📞</i>
+                            <span>{{ business.phone }}</span>
+                        </div>
+                        <div>
+                            <i>📍</i>
+                            <span>{{ business.full_address }}</span>
+                        </div>
+                        <div>
+                            <i>🏢</i>
+                            <span>{{ business.city }}, {{ business.state }} {{ business.postal_code }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            {% if businesses|length > 50 %}
+            <div class="pagination-controls">
+                <button id="loadMoreBtn" class="btn-primary" onclick="loadMoreBusinesses()">Load More Businesses</button>
+                <button id="showAllBtn" class="btn-secondary" onclick="showAllBusinesses()" style="display: none;">Show All Businesses</button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+
+<script>
+// Pagination functionality for business list
+let currentPage = 1;
+const businessesPerPage = 50;
+const allBusinesses = document.querySelectorAll('.business-card');
+const totalBusinesses = allBusinesses.length;
+
+function showBusinesses(startIndex, endIndex) {
+    allBusinesses.forEach((business, index) => {
+        if (index >= startIndex && index < endIndex) {
+            business.style.display = 'block';
+        } else {
+            business.style.display = 'none';
+        }
+    });
+}
+
+function loadMoreBusinesses() {
+    const startIndex = 0;
+    const endIndex = (currentPage + 1) * businessesPerPage;
+    
+    if (endIndex >= totalBusinesses) {
+        showAllBusinesses();
+        return;
+    }
+    
+    showBusinesses(startIndex, endIndex);
+    currentPage++;
+    
+    if (endIndex >= totalBusinesses) {
+        document.getElementById('loadMoreBtn').style.display = 'none';
+        document.getElementById('showAllBtn').style.display = 'inline-block';
+    }
+}
+
+function showAllBusinesses() {
+    allBusinesses.forEach(business => {
+        business.style.display = 'block';
+    });
+    document.getElementById('loadMoreBtn').style.display = 'none';
+    document.getElementById('showAllBtn').style.display = 'none';
+}
+
+// Initialize pagination
+if (totalBusinesses > businessesPerPage) {
+    showBusinesses(0, businessesPerPage);
+    document.getElementById('loadMoreBtn').style.display = 'inline-block';
+} else {
+    showAllBusinesses();
+}
+</script>
+{% endblock %}

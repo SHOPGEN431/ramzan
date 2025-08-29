@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+{% block title %}LLC Directory - Find LLC Formation Services Near You{% endblock %}
+
+{% block description %}Discover the most comprehensive directory of LLC formation services across the United States. Find local providers, compare services, and get expert help for your business formation needs.{% endblock %}
+
+{% block keywords %}LLC directory, LLC formation services, business formation, LLC formation near me, local LLC services{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Find LLC Formation Services Near You</h1>
+            <p>Discover the most comprehensive directory of LLC formation services across the United States. Find local providers, compare services, and get expert help for your business formation needs.</p>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for LLC services in your area...">
+                <button onclick="performSearch()">Search</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>{{ businesses|length }}+</h3>
+                <p>Services</p>
+            </div>
+            <div class="stat-item">
+                <h3>50</h3>
+                <p>States</p>
+            </div>
+            <div class="stat-item">
+                <h3>{{ cities|length }}+</h3>
+                <p>Cities</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Access</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Directory Highlights -->
+<section class="directory-highlights">
+    <div class="container">
+        <h2>Directory Highlights</h2>
+        <div class="highlights-grid">
+            {% for state_name, state_data in top_states[:4] %}
+            <div class="highlight-card">
+                <h3>{{ state_name }}</h3>
+                <p>{{ state_data|length }} LLC Services</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="highlights-cta">
+            <a href="{{ url_for('locations') }}" class="btn-primary">Browse All Locations</a>
+        </div>
+    </div>
+</section>
+
+<!-- Online vs Local Section -->
+<section class="formation-options">
+    <div class="container">
+        <h2>Online vs Local LLC Formation Options</h2>
+        <p>Choose between nationwide online services or local providers based on your needs</p>
+        
+        <div class="options-grid">
+            <div class="option-card">
+                <h3>Online LLC Formation Services</h3>
+                <div class="option-badge">Nationwide Coverage</div>
+                <ul>
+                    <li>Same-day filing available</li>
+                    <li>Free registered agent service</li>
+                    <li>Online dashboard & compliance tools</li>
+                    <li>Competitive pricing starting at $49</li>
+                    <li>24/7 customer support</li>
+                </ul>
+                <a href="#online-services" class="btn-secondary">Browse Online Services</a>
+            </div>
+            
+            <div class="option-card">
+                <h3>Local LLC Formation Services</h3>
+                <div class="option-badge">Personal Touch</div>
+                <ul>
+                    <li>Local expertise & state knowledge</li>
+                    <li>In-person consultations available</li>
+                    <li>Faster processing with state offices</li>
+                    <li>Ongoing local business support</li>
+                    <li>Competitive local pricing</li>
+                </ul>
+                <a href="{{ url_for('locations') }}" class="btn-secondary">Find Local Providers</a>
+            </div>
+        </div>
+        
+        <div class="choice-guide">
+            <h3>Which Option is Right for You?</h3>
+            <div class="choice-grid">
+                <div class="choice-item">
+                    <strong>Choose Online:</strong> Quick setup, nationwide providers, digital-first approach
+                </div>
+                <div class="choice-item">
+                    <strong>Choose Local:</strong> Personal service, state expertise, ongoing support
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Top Cities Section -->
+<section class="top-cities">
+    <div class="container">
+        <h2>Top Cities with LLC Formation Services</h2>
+        <p>Browse the top cities with the most LLC formation services available</p>
+        
+        <div class="cities-grid">
+            {% for city_name, city_businesses in top_cities[:12] %}
+            <div class="city-card">
+                <h3>{{ city_name }}</h3>
+                <p>{{ city_businesses|length }} LLC Services</p>
+                <span>Professional business formation services</span>
+                <a href="{{ url_for('city_page', city_slug=city_name|lower|replace(' ', '-')) }}" class="city-link">View Services</a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="cities-cta">
+            <a href="{{ url_for('locations') }}" class="btn-primary">View All Cities</a>
+        </div>
+    </div>
+</section>
+
+<!-- Browse by State -->
+<section class="browse-states">
+    <div class="container">
+        <h2>Browse by State</h2>
+        <div class="states-grid">
+            {% for state_name, state_data in states %}
+            <div class="state-card">
+                <h3>{{ state_name }}</h3>
+                <a href="{{ url_for('state_page', state_slug=state_name|lower|replace(' ', '-')) }}" class="btn-outline">View Businesses</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Business Tools Section -->
+<section class="business-tools">
+    <div class="container">
+        <h2>Free Business Calculators</h2>
+        <p>Essential tools to help you plan and analyze your LLC formation and business finances</p>
+        
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>Break-Even Calculator</h3>
+                <p>Determine when your business will start making a profit by calculating your break-even point.</p>
+                <div class="tool-badge">Free Tool</div>
+                <a href="#" class="btn-secondary">Calculate Break-Even</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>ROI Calculator</h3>
+                <p>Calculate your return on investment to evaluate the profitability of your business investments.</p>
+                <div class="tool-badge">Free Tool</div>
+                <a href="#" class="btn-secondary">Calculate ROI</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>Business Loan Calculator</h3>
+                <p>Calculate loan payments, interest costs, and amortization schedules for business financing.</p>
+                <div class="tool-badge">Free Tool</div>
+                <a href="#" class="btn-secondary">Calculate Loan</a>
+            </div>
+            
+            <div class="tool-card">
+                <h3>Equity Split Calculator</h3>
+                <p>Determine fair ownership percentages for multi-member LLCs based on contributions.</p>
+                <div class="tool-badge">Free Tool</div>
+                <a href="#" class="btn-secondary">Calculate Equity Split</a>
+            </div>
+        </div>
+        
+        <div class="tools-features">
+            <h3>Why Use Our Business Calculators?</h3>
+            <div class="features-grid">
+                <div class="feature">100% Free</div>
+                <div class="feature">Secure & Private</div>
+                <div class="feature">Mobile Friendly</div>
+                <div class="feature">Export Results</div>
+            </div>
+            <a href="#" class="btn-primary">View All Calculators</a>
+        </div>
+    </div>
+</section>
+
+<!-- LLC Guides Section -->
+<section class="llc-guides">
+    <div class="container">
+        <h2>Essential LLC Guides</h2>
+        <p>Comprehensive guides to help you navigate every aspect of LLC formation and management</p>
+        
+        <div class="guides-grid">
+            <div class="guide-card">
+                <h3>LLC Formation Guide</h3>
+                <p>Step-by-step guide to forming your LLC, from choosing a business structure to filing paperwork and getting your EIN.</p>
+                <ul>
+                    <li>Business structure selection</li>
+                    <li>State filing requirements</li>
+                    <li>EIN application process</li>
+                    <li>Operating agreement basics</li>
+                </ul>
+                <a href="#" class="btn-secondary">Read Formation Guide</a>
+            </div>
+            
+            <div class="guide-card">
+                <h3>Operating Agreement Guide</h3>
+                <p>Learn how to create a comprehensive operating agreement that protects your business and defines member relationships.</p>
+                <ul>
+                    <li>Key agreement sections</li>
+                    <li>Single vs multi-member LLCs</li>
+                    <li>Member rights and responsibilities</li>
+                    <li>Dispute resolution clauses</li>
+                </ul>
+                <a href="#" class="btn-secondary">Read Agreement Guide</a>
+            </div>
+            
+            <div class="guide-card">
+                <h3>LLC Tax Guide</h3>
+                <p>Understand LLC taxation, filing requirements, deductions, and strategies to minimize your tax burden.</p>
+                <ul>
+                    <li>Tax classification options</li>
+                    <li>Filing deadlines and forms</li>
+                    <li>Self-employment tax</li>
+                    <li>Deductions and credits</li>
+                </ul>
+                <a href="#" class="btn-secondary">Read Tax Guide</a>
+            </div>
+            
+            <div class="guide-card">
+                <h3>Compliance Guide</h3>
+                <p>Stay compliant with annual requirements, ongoing obligations, and state-specific regulations for your LLC.</p>
+                <ul>
+                    <li>Annual report requirements</li>
+                    <li>State-specific compliance</li>
+                    <li>Record keeping requirements</li>
+                    <li>Penalty avoidance</li>
+                </ul>
+                <a href="#" class="btn-secondary">Read Compliance Guide</a>
+            </div>
+        </div>
+        
+        <div class="guides-cta">
+            <a href="#" class="btn-primary">Browse All Guides</a>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Tools Section -->
+<section class="interactive-tools">
+    <div class="container">
+        <h2>Interactive Business Tools</h2>
+        <p>Interactive tools to help you make informed decisions about your LLC formation and business structure</p>
+        
+        <div class="interactive-grid">
+            <div class="interactive-card">
+                <h3>Business Structure Quiz</h3>
+                <p>Take our interactive quiz to determine the best business structure for your specific needs and goals.</p>
+                <div class="interactive-badges">
+                    <span class="badge">8 Questions</span>
+                    <span class="badge">Instant Results</span>
+                </div>
+                <a href="#" class="btn-primary">Take the Quiz</a>
+            </div>
+            
+            <div class="interactive-card">
+                <h3>LLC Cost Calculator</h3>
+                <p>Calculate the total cost of forming and maintaining your LLC, including state fees and ongoing expenses.</p>
+                <div class="interactive-badges">
+                    <span class="badge">State-Specific</span>
+                    <span class="badge">Detailed Breakdown</span>
+                </div>
+                <a href="#" class="btn-primary">Calculate Costs</a>
+            </div>
+            
+            <div class="interactive-card">
+                <h3>Foreign Qualification Checklist</h3>
+                <p>Interactive checklist to help you navigate the foreign qualification process when expanding to new states.</p>
+                <div class="interactive-badges">
+                    <span class="badge">Step-by-Step</span>
+                    <span class="badge">Progress Tracking</span>
+                </div>
+                <a href="#" class="btn-primary">Start Checklist</a>
+            </div>
+        </div>
+        
+        <div class="interactive-features">
+            <h3>Why Use Our Interactive Tools?</h3>
+            <div class="features-grid">
+                <div class="feature">Smart Analysis</div>
+                <div class="feature">Save Progress</div>
+                <div class="feature">Print Results</div>
+                <div class="feature">Share Results</div>
+            </div>
+            <a href="#" class="btn-primary">View All Tools</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}All States - LLC Directory | Business Listings by State{% endblock %}
+
+{% block description %}Browse LLC businesses by state. Find local companies, contact information, and business details across all 50 states in our comprehensive directory.{% endblock %}
+
+{% block keywords %}LLC directory by state, business listings, state business directory, local companies{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <div class="container">
+        <a href="{{ url_for('index') }}">Home</a> / <span>All States</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <div class="container">
+        <h1>All States</h1>
+        <p>Browse LLC businesses by state across the United States</p>
+    </div>
+</div>
+
+<main class="main">
+    <div class="container">
+        <div class="states-grid">
+            {% for state in states %}
+            <a href="{{ url_for('state_page', state_slug=state.slug) }}" class="state-card">
+                <h3>{{ state.name }}</h3>
+                <p>{{ state.description }}</p>
+                <div class="state-stats">
+                    <span>{{ state.business_count }} Businesses</span>
+                    <span>{{ state.city_count }} Cities</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}

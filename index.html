@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLC Directory - Find Local Businesses Across the United States</title>
+    <meta name="description" content="Comprehensive directory of LLC businesses across the United States. Find local companies, contact information, and business details by city and state.">
+    <meta name="keywords" content="LLC directory, business directory, local businesses, company listings, business search">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="LLC Directory - Find Local Businesses Across the United States">
+    <meta property="og:description" content="Comprehensive directory of LLC businesses across the United States. Find local companies, contact information, and business details.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LLC Directory - Find Local Businesses">
+    <meta name="twitter:description" content="Comprehensive directory of LLC businesses across the United States">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>LLC Directory</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="states.html">States</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Find Local LLC Businesses</h1>
+                    <p>Comprehensive directory of LLC businesses across the United States. Search by state, city, or business type to find the companies you need.</p>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search businesses, cities, or states...">
+                        <button onclick="performSearch()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-states">
+            <div class="container">
+                <h2>Browse by State</h2>
+                <div class="states-grid" id="statesGrid">
+                    <!-- States will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>States Covered</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>Businesses Listed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>Cities</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LLC Directory</h3>
+                    <p>Your comprehensive source for LLC business information across the United States.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="states.html">All States</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular States</h4>
+                    <ul>
+                        <li><a href="states/florida.html">Florida</a></li>
+                        <li><a href="states/california.html">California</a></li>
+                        <li><a href="states/texas.html">Texas</a></li>
+                        <li><a href="states/new-york.html">New York</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LLC Directory. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

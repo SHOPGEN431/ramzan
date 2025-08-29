@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy - LLC Directory{% endblock %}
+
+{% block description %}Our privacy policy explains how LLC Directory protects your information. We do not collect any personal information from our users.{% endblock %}
+
+{% block keywords %}privacy policy, data protection, LLC directory privacy, no personal data collection{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <div class="container">
+        <a href="{{ url_for('index') }}">Home</a> / <span>Privacy Policy</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is important to us</p>
+    </div>
+</div>
+
+<main class="main">
+    <div class="container">
+        <div class="privacy-content">
+            <div class="privacy-section">
+                <h2>Introduction</h2>
+                <p>At LLC Directory, we are committed to protecting your privacy and ensuring transparency in our data practices. This Privacy Policy explains how we handle information when you visit our website.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Information We Do NOT Collect</h2>
+                <div class="no-collection-notice">
+                    <h3>🔒 No Personal Information Collection</h3>
+                    <p><strong>We do not collect any personal information from our users.</strong> This includes but is not limited to:</p>
+                    <ul>
+                        <li>Names and contact information</li>
+                        <li>Email addresses</li>
+                        <li>Phone numbers</li>
+                        <li>Physical addresses</li>
+                        <li>Social security numbers</li>
+                        <li>Financial information</li>
+                        <li>IP addresses (beyond basic analytics)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Information We May Collect</h2>
+                <p>We may collect anonymous, non-personal information for website analytics and improvement purposes:</p>
+                <ul>
+                    <li><strong>Usage Analytics:</strong> Basic website usage statistics (pages visited, time spent)</li>
+                    <li><strong>Technical Information:</strong> Browser type, device type, and general location (city/state level only)</li>
+                    <li><strong>Public Business Data:</strong> Information about businesses that is publicly available and used for our directory listings</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>How We Use Information</h2>
+                <p>Any information we collect is used solely for:</p>
+                <ul>
+                    <li>Improving our website functionality and user experience</li>
+                    <li>Providing accurate business directory information</li>
+                    <li>Website analytics and performance monitoring</li>
+                    <li>Technical support and maintenance</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Data Security</h2>
+                <p>We implement appropriate security measures to protect any information we may collect. However, since we do not collect personal information, the risk of personal data exposure is minimal.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Third-Party Services</h2>
+                <p>Our website may contain links to third-party services and websites. We are not responsible for the privacy practices of these external sites. We encourage users to review the privacy policies of any third-party websites they visit.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Cookies and Tracking</h2>
+                <p>We may use basic cookies for website functionality and analytics. These cookies do not contain personal information and are used only to improve your browsing experience.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Children's Privacy</h2>
+                <p>Our website is not intended for children under 13 years of age. We do not knowingly collect any personal information from children under 13.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>📧 Contact</h4>
+                        <p><a href="{{ url_for('contact') }}">Visit our Contact Page</a></p>
+                    </div>
+                    
+                    
+                    
+                    <div class="contact-item">
+                        <h4>📍 Address</h4>
+                        <p>Rigma Marketing LLC<br>
+                        213 North Glendale Ave #1066<br>
+                        Glendale, CA 91206<br>
+                        United States</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Your Rights</h2>
+                <p>Since we do not collect personal information, there is no personal data to access, modify, or delete. However, if you have any concerns about our data practices, please contact us using the information provided above.</p>
+            </div>
+
+                               <div class="privacy-footer">
+                       <p><strong>Last Updated:</strong> January 15, 2025</p>
+                       <p>This privacy policy is effective as of the date listed above and applies to all users of LLC Directory.</p>
+                   </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

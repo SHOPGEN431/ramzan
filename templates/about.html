@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - LLC Directory | Your Trusted Business Resource{% endblock %}
+
+{% block description %}Learn about LLC Directory, your comprehensive resource for finding LLC businesses across the United States. Discover our mission and commitment to connecting you with local companies.{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <div class="container">
+        <a href="{{ url_for('index') }}">Home</a> / <span>About</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+    <div class="container">
+        <h1>About LLC Directory</h1>
+        <p>Your trusted resource for finding LLC businesses across the United States</p>
+    </div>
+</div>
+
+<main class="main">
+    <div class="container">
+        <section class="about-section">
+            <h2>Our Mission</h2>
+            <p>LLC Directory is dedicated to providing comprehensive, accurate, and up-to-date information about LLC businesses across the United States. We believe that finding the right business partner or service provider should be easy and accessible to everyone.</p>
+        </section>
+
+        <section class="about-section">
+            <h2>What We Offer</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Comprehensive Coverage</h3>
+                    <p>Our directory covers businesses across all 50 states, providing you with access to local companies wherever you need them.</p>
+                </div>
+                <div class="feature">
+                    <h3>Detailed Information</h3>
+                    <p>Get complete contact information including phone numbers, addresses, and business details to make informed decisions.</p>
+                </div>
+                <div class="feature">
+                    <h3>Easy Navigation</h3>
+                    <p>Browse by state, city, or search for specific businesses to quickly find what you're looking for.</p>
+                </div>
+                <div class="feature">
+                    <h3>Always Accessible</h3>
+                    <p>Our directory is available 24/7, ensuring you can find business information whenever you need it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Our Coverage</h2>
+            <p>We maintain a comprehensive database of LLC businesses across the United States, including:</p>
+            <ul>
+                <li>All 50 states and territories</li>
+                <li>Major cities and metropolitan areas</li>
+                <li>Small towns and rural communities</li>
+                <li>Various business types and industries</li>
+            </ul>
+        </section>
+
+        <section class="about-section">
+            <h2>Our Commitment</h2>
+            <p>We are committed to:</p>
+            <ul>
+                <li>Providing accurate and up-to-date information</li>
+                <li>Maintaining a user-friendly platform</li>
+                <li>Ensuring fast and reliable access</li>
+                <li>Continuously expanding our database</li>
+                <li>Protecting user privacy and data security</li>
+            </ul>
+        </section>
+    </div>
+</main>
+{% endblock %}
