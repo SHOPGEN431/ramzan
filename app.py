@@ -25,35 +25,35 @@ def load_data_from_csv():
     
     try:
         with open(csv_file, 'r', encoding='utf-8') as file:
-                reader = csv.DictReader(file)
+            reader = csv.DictReader(file)
+            
+            for row in reader:
+                business = {
+                    'name': row.get('name', '').strip(),
+                    'phone': format_phone(row.get('phone', '')),
+                    'full_address': row.get('full_address', '').strip(),
+                    'city': row.get('city', '').strip(),
+                    'postal_code': row.get('postal_code', '').strip(),
+                    'state': row.get('state', '').strip()
+                }
                 
-                for row in reader:
-                    business = {
-                        'name': row.get('name', '').strip(),
-                        'phone': format_phone(row.get('phone', '')),
-                        'full_address': row.get('full_address', '').strip(),
-                        'city': row.get('city', '').strip(),
-                        'postal_code': row.get('postal_code', '').strip(),
-                        'state': row.get('state', '').strip()
-                    }
-                    
-                    # Skip if missing essential data
-                    if not business['name'] or not business['state']:
-                        continue
-                    
-                    businesses_data.append(business)
-                    
-                    # Organize by state
-                    states_data[business['state']].append(business)
-                    
-                    # Organize by city (within state)
-                    city_key = f"{business['city']}_{business['state']}"
-                    cities_data[city_key].append(business)
-            
-            print(f"Loaded {len(businesses_data)} businesses")
-            print(f"States: {len(states_data)}")
-            print(f"Cities: {len(cities_data)}")
-            
+                # Skip if missing essential data
+                if not business['name'] or not business['state']:
+                    continue
+                
+                businesses_data.append(business)
+                
+                # Organize by state
+                states_data[business['state']].append(business)
+                
+                # Organize by city (within state)
+                city_key = f"{business['city']}_{business['state']}"
+                cities_data[city_key].append(business)
+        
+        print(f"Loaded {len(businesses_data)} businesses")
+        print(f"States: {len(states_data)}")
+        print(f"Cities: {len(cities_data)}")
+        
     except FileNotFoundError:
         print(f"Error: CSV file not found at {csv_file}")
         create_sample_data()
